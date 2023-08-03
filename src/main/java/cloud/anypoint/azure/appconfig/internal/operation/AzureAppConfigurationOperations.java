@@ -11,19 +11,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
+// docs:
+// https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/appconfiguration/azure-data-appconfiguration#retrieve-a-configuration-setting
 public class AzureAppConfigurationOperations {
   private final Logger LOGGER = LoggerFactory.getLogger(AzureAppConfigurationOperations.class);
 
   @MediaType(value = ANY, strict = false)
-  public String retrieveInfo(@Config AzureAppConfigurationConfiguration configuration, @Connection AzureAppConfigurationConnection connection){
-    return "Using Configuration [" + configuration.getConfigId() + "] with Connection id [" + connection.getId() + "]";
-  }
-
-  @MediaType(value = ANY, strict = false)
-  public String getKeyValue(String key, String label) {
+  public String getSetting(String key, String label) {
     return "value";
   }
-
-  //TODO: also feature flags
 
 }

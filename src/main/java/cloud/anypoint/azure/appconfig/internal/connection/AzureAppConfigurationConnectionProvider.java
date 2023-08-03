@@ -44,7 +44,7 @@ public class AzureAppConfigurationConnectionProvider implements PoolingConnectio
 
   @Override
   public AzureAppConfigurationConnection connect() throws ConnectionException {
-    return new AzureAppConfigurationConnection(requiredParameter + ":" + optionalParameter);
+    return new AzureAppConfigurationConnection("", "", "", "");
   }
 
   @Override
@@ -52,7 +52,7 @@ public class AzureAppConfigurationConnectionProvider implements PoolingConnectio
     try {
       connection.invalidate();
     } catch (Exception e) {
-      LOGGER.error("Error while disconnecting [" + connection.getId() + "]: " + e.getMessage(), e);
+      LOGGER.error("Error while disconnecting: " + e.getMessage(), e);
     }
   }
 

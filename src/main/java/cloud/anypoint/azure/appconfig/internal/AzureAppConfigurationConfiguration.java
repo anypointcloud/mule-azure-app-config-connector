@@ -6,18 +6,29 @@ import org.mule.runtime.extension.api.annotation.Operations;
 import org.mule.runtime.extension.api.annotation.connectivity.ConnectionProviders;
 import org.mule.runtime.extension.api.annotation.param.Parameter;
 
-/**
- * This class represents an extension configuration, values set in this class are commonly used across multiple
- * operations since they represent something core from the extension.
- */
 @Operations(AzureAppConfigurationOperations.class)
 @ConnectionProviders(AzureAppConfigurationConnectionProvider.class)
 public class AzureAppConfigurationConfiguration {
 
   @Parameter
-  private String configId;
+  private String endpoint;
 
-  public String getConfigId(){
-    return configId;
+  public String getEndpoint() { return endpoint; }
+
+  @Parameter
+  private String clientId;
+
+  public String getClientId(){
+    return clientId;
   }
+
+  @Parameter
+  private String clientSecret;
+
+  public String getClientSecret() { return clientSecret; }
+
+  @Parameter
+  private String tenantId;
+
+  public String getTenantId() { return tenantId; }
 }

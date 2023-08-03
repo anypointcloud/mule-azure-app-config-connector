@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>cloud.anypoint</groupId>
     <artifactId>mule-azure-app-config-connector</artifactId>
-    <version>0.0.0</version>
+    <version>0.0.0-SNAPSHOT</version>
     <packaging>mule-extension</packaging>
     <name>Anypoint Cloud Connector: Azure App Configuration</name>
 
@@ -15,7 +15,28 @@
         <artifactId>mule-modules-parent</artifactId>
         <version>1.1.3</version>
     </parent>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.azure</groupId>
+                <artifactId>azure-sdk-bom</artifactId>
+                <version>1.2.15</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.azure</groupId>
+            <artifactId>azure-identity</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.azure</groupId>
+            <artifactId>azure-data-appconfiguration</artifactId>
+        </dependency>
+    </dependencies>
     <!--
    Copyright 2023 Ryan Hoegg
 
