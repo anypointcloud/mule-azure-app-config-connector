@@ -10,25 +10,4 @@ import org.mule.runtime.extension.api.annotation.param.Parameter;
 @ConnectionProviders(AzureAppConfigurationConnectionProvider.class)
 public class AzureAppConfigurationConfiguration {
 
-  @Parameter
-  private String endpoint;
-
-  public String getEndpoint() { return endpoint; }
-
-  @Parameter
-  private String clientId;
-
-  public String getClientId(){
-    return clientId;
-  }
-
-  @Parameter
-  private String clientSecret;
-
-  public String getClientSecret() { return clientSecret; }
-
-  @Parameter
-  private String tenantId;
-
-  public String getTenantId() { return tenantId; }
 }

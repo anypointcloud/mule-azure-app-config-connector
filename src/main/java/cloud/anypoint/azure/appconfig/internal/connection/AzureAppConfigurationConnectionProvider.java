@@ -12,52 +12,53 @@ import org.mule.runtime.extension.api.annotation.param.display.DisplayName;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+public class AzureAppConfigurationConnectionProvider implements CachedConnectionProvider<AzureAppConfigurationConnection> {
 
-/**
- * This class (as it's name implies) provides connection instances and the funcionality to disconnect and validate those
- * connections.
- * <p>
- * All connection related parameters (values required in order to create a connection) must be
- * declared in the connection providers.
- * <p>
- * This particular example is a {@link PoolingConnectionProvider} which declares that connections resolved by this provider
- * will be pooled and reused. There are other implementations like {@link CachedConnectionProvider} which lazily creates and
- * caches connections or simply {@link ConnectionProvider} if you want a new connection each time something requires one.
- */
-public class AzureAppConfigurationConnectionProvider implements PoolingConnectionProvider<AzureAppConfigurationConnection> {
+    private final Logger LOGGER = LoggerFactory.getLogger(AzureAppConfigurationConnectionProvider.class);
+    @Parameter
+    private String endpoint;
 
-  private final Logger LOGGER = LoggerFactory.getLogger(AzureAppConfigurationConnectionProvider.class);
-
- /**
-  * A parameter that is always required to be configured.
-  */
-  @Parameter
-  private String requiredParameter;
-
- /**
-  * A parameter that is not required to be configured by the user.
-  */
-  @DisplayName("Friendly Name")
-  @Parameter
-  @Optional(defaultValue = "100")
-  private int optionalParameter;
-
-  @Override
-  public AzureAppConfigurationConnection connect() throws ConnectionException {
-    return new AzureAppConfigurationConnection("", "", "", "");
-  }
-
-  @Override
-  public void disconnect(AzureAppConfigurationConnection connection) {
-    try {
-      connection.invalidate();
-    } catch (Exception e) {
-      LOGGER.error("Error while disconnecting: " + e.getMessage(), e);
+    public String getEndpoint() {
+        return endpoint;
     }
-  }
 
-  @Override
-  public ConnectionValidationResult validate(AzureAppConfigurationConnection connection) {
-    return ConnectionValidationResult.success();
-  }
+    @Parameter
+    private String clientId;
+
+    public String getClientId() {
+        return clientId;
+    }
+
+    @Parameter
+    private String clientSecret;
+
+    public String getClientSecret() {
+        return clientSecret;
+    }
+
+    @Parameter
+    private String tenantId;
+
+    public String getTenantId() {
+        return tenantId;
+    }
+
+    @Override
+    public AzureAppConfigurationConnection connect() throws ConnectionException {
+        return new AzureAppConfigurationConnection("", "", "", "");
+    }
+
+    @Override
+    public void disconnect(AzureAppConfigurationConnection connection) {
+        try {
+            connection.invalidate();
+        } catch (Exception e) {
+            LOGGER.error("Error while disconnecting: " + e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public ConnectionValidationResult validate(AzureAppConfigurationConnection connection) {
+        return ConnectionValidationResult.success();
+    }
 }
