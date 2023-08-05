@@ -1,5 +1,7 @@
 package cloud.anypoint.azure.appconfig.internal.connection;
 
+import com.azure.core.credential.TokenCredential;
+import com.azure.identity.ClientSecretCredentialBuilder;
 import org.mule.runtime.api.connection.ConnectionException;
 import org.mule.runtime.extension.api.annotation.param.Parameter;
 import org.mule.runtime.extension.api.annotation.param.Optional;
@@ -45,7 +47,12 @@ public class AzureAppConfigurationConnectionProvider implements CachedConnection
 
     @Override
     public AzureAppConfigurationConnection connect() throws ConnectionException {
-        return new AzureAppConfigurationConnection("", "", "", "");
+        TokenCredential credential = new ClientSecretCredentialBuilder()
+                .tenantId(tenantId)
+                .clientId(clientId)
+                .clientSecret(clientSecret)
+                .build();
+        return new AzureAppConfigurationConnection(credential, endpoint);
     }
 
     @Override

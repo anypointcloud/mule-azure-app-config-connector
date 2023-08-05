@@ -9,5 +9,4 @@ import org.mule.runtime.extension.api.annotation.param.Parameter;
 @Operations(AzureAppConfigurationOperations.class)
 @ConnectionProviders(AzureAppConfigurationConnectionProvider.class)
 public class AzureAppConfigurationConfiguration {
-
 }
