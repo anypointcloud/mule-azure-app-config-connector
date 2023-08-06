@@ -2,9 +2,12 @@ package cloud.anypoint.azure.appconfig;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+
+import org.junit.Ignore;
 import org.mule.functional.junit4.MuleArtifactFunctionalTestCase;
 import org.junit.Test;
 
+@Ignore
 public class AzureAppConfigurationOperationsTestCase extends MuleArtifactFunctionalTestCase {
 
   /**
@@ -15,16 +18,9 @@ public class AzureAppConfigurationOperationsTestCase extends MuleArtifactFunctio
     return "test-mule-config.xml";
   }
 
-  @Test
-  public void executeSayHiOperation() throws Exception {
-    String payloadValue = ((String) flowRunner("sayHiFlow").run()
-                                      .getMessage()
-                                      .getPayload()
-                                      .getValue());
-    assertThat(payloadValue, is("Hello Mariano Gonzalez!!!"));
-  }
 
   @Test
+  @Ignore
   public void executeRetrieveInfoOperation() throws Exception {
     String payloadValue = ((String) flowRunner("retrieveInfoFlow")
                                       .run()

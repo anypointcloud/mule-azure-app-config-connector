@@ -1,13 +1,13 @@
 package cloud.anypoint.azure.appconfig.api;
 
-import java.time.OffsetDateTime;
+import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
 
 public class SettingAttributes {
     private String key;
     private String label;
-    private OffsetDateTime lastModified;
+    private Instant lastModified;
     private String eTag;
     private Map<String, String> tags = new HashMap<>();
 
@@ -27,11 +27,11 @@ public class SettingAttributes {
         this.label = label;
     }
 
-    public OffsetDateTime getLastModified() {
+    public Instant getLastModified() {
         return lastModified;
     }
 
-    public void setLastModified(OffsetDateTime lastModified) {
+    public void setLastModified(Instant lastModified) {
         this.lastModified = lastModified;
     }
 

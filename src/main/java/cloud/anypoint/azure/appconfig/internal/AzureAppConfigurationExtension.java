@@ -1,11 +1,14 @@
 package cloud.anypoint.azure.appconfig.internal;
 
+import cloud.anypoint.azure.appconfig.api.ConnectorError;
 import org.mule.runtime.extension.api.annotation.Extension;
 import org.mule.runtime.extension.api.annotation.Configurations;
 import org.mule.runtime.extension.api.annotation.dsl.xml.Xml;
+import org.mule.runtime.extension.api.annotation.error.ErrorTypes;
 
 @Xml(prefix = "appconfig")
 @Extension(name = "Azure App Configuration", vendor = "Anypoint Cloud")
+@ErrorTypes(ConnectorError.class)
 @Configurations(AzureAppConfigurationConfiguration.class)
 public class AzureAppConfigurationExtension {
 

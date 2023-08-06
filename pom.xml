@@ -9,6 +9,7 @@
     <version>0.0.0-SNAPSHOT</version>
     <packaging>mule-extension</packaging>
     <name>Anypoint Cloud Connector: Azure App Configuration</name>
+    <description>This project is not production ready software, which is why it has a major version number 0. We recommend waiting for major version 1. See LICENSE for warranty clause.</description>
 
     <parent>
         <groupId>org.mule.extensions</groupId>

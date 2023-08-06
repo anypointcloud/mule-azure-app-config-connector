@@ -10,6 +10,7 @@ import com.azure.identity.ClientSecretCredentialBuilder;
 import com.fasterxml.jackson.databind.util.TypeKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import reactor.core.publisher.Mono;
 
 import java.util.function.Consumer;
 
@@ -18,21 +19,32 @@ import java.util.function.Consumer;
  */
 public final class AzureAppConfigurationConnection {
   private static Logger logger = LoggerFactory.getLogger(AzureAppConfigurationConnection.class);
+  private final String endpoint;
 
-  private final ConfigurationAsyncClient client;
+  private ConfigurationAsyncClient client;
   public AzureAppConfigurationConnection(TokenCredential credential, String endpoint) {
       this.client = new ConfigurationClientBuilder()
             .credential(credential)
             .endpoint(endpoint)
             .buildAsyncClient();
+      this.endpoint = endpoint;
   }
+
+
 
   public void invalidate() {
-    // do something to invalidate this connection!
+      this.client = null;
   }
 
-  public void getSetting(String key, String label, Consumer<ConfigurationSetting> consumer) {
-      client.getConfigurationSetting(key, label)
-              .subscribe(consumer);
+  public boolean isValid() {
+      return this.client != null;
+  }
+
+  public String getEndpoint() {
+      return this.endpoint;
+  }
+
+  public Mono<ConfigurationSetting> getSetting(String key, String label) {
+      return client.getConfigurationSetting(key, label);
   }
 }
