@@ -6,6 +6,7 @@ import cloud.anypoint.azure.appconfig.api.SettingAttributes;
 import cloud.anypoint.azure.appconfig.internal.connection.AzureAppConfigurationConnection;
 import cloud.anypoint.azure.appconfig.internal.datasense.SettingErrorTypeProvider;
 import com.azure.core.exception.HttpResponseException;
+import com.azure.data.appconfiguration.models.ConfigurationSetting;
 import org.mule.runtime.extension.api.annotation.error.Throws;
 import org.mule.runtime.extension.api.annotation.param.MediaType;
 import org.mule.runtime.extension.api.annotation.param.Connection;
@@ -42,20 +43,24 @@ public class AzureAppConfigurationOperations {
                             }
                         })
                 .subscribe(setting -> {
-                    SettingAttributes attributes = new SettingAttributes();
-                    attributes.setKey(setting.getKey());
-                    attributes.setLabel(setting.getLabel());
-                    attributes.setLastModified(setting.getLastModified().toInstant());
-                    attributes.setETag(setting.getETag());
-                    attributes.setTags(setting.getTags());
                     org.mule.runtime.api.metadata.MediaType contentType =
                             org.mule.runtime.api.metadata.MediaType.parse(setting.getContentType());
                     callback.success(Result.<String, SettingAttributes>builder()
                             .output(setting.getValue())
                             .mediaType(contentType)
-                            .attributes(attributes)
+                            .attributes(createAttributes(setting))
                             .build());
                 }, callback::error);
+    }
+
+    private SettingAttributes createAttributes(ConfigurationSetting setting) {
+        SettingAttributes attributes = new SettingAttributes();
+        attributes.setKey(setting.getKey());
+        attributes.setLabel(setting.getLabel());
+        attributes.setLastModified(setting.getLastModified().toInstant());
+        attributes.setETag(setting.getETag());
+        attributes.setTags(setting.getTags());
+        return attributes;
     }
 
 }
