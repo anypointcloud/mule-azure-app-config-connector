@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>cloud.anypoint</groupId>
     <artifactId>mule-azure-app-config-connector</artifactId>
-    <version>0.0.0</version>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>mule-extension</packaging>
     <name>Anypoint Cloud Connector: Azure App Configuration</name>
     <description>This project is not production ready software, which is why it has a major version number 0. We recommend waiting for major version 1. See LICENSE for warranty clause.</description>
@@ -25,7 +25,7 @@
         <connection>scm:git:git@github.com:anypointcloud/mule-azure-app-config-connector.git</connection>
         <developerConnection>scm:git:git@github.com:anypointcloud/mule-azure-app-config-connector.git</developerConnection>
         <url>https://github.com/anypointcloud/mule-azure-app-config-connector</url>
-      <tag>0.0.0</tag>
+      <tag>HEAD</tag>
   </scm>
     <developers>
         <developer>
